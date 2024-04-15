@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
 
     public int maxHealth = 5;
+    public int score;
+    public TextMeshProUGUI scoreText;
+    public GameObject lose;
+    public GameObject win;
+    public GameObject gameWorld;
+    public GameObject gameUI;
+    public GameObject gameUI2;
+    public GameObject ruby;
+    public bool gameOver = false;
 
     public GameObject projectilePrefab;
+
+// Triggers heal or hurt for when Ruby is healed or hurt
+    public ParticleSystem hurtEffect;
 
     public AudioClip throwSound;
     public AudioClip hitSound;
@@ -38,7 +52,9 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         audioSource = GetComponent<AudioSource>();
-    }
+        speed = 3.0f;
+        ruby.SetActive(true);
+}
 
     // Update is called once per frame
     void Update()
@@ -64,6 +80,26 @@ public class RubyController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
+        if (currentHealth == 0)
+        {
+            gameOver = true;
+            speed = 0.0f;
+            ruby.SetActive(false);
+            gameUI.SetActive(false);
+            gameUI2.SetActive(false);
+            gameWorld.SetActive(false);
+            lose.SetActive(true);
+        }
+        if (score == 3)
+        {
+            gameOver = true;
+            speed = 0.0f;
+            ruby.SetActive(false);
+            gameUI.SetActive(false);
+            gameUI2.SetActive(false);
+            gameWorld.SetActive(false);
+            win.SetActive(true);
+        }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -82,6 +118,13 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
+        if (gameOver == true)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -91,6 +134,12 @@ public class RubyController : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+    }
+    
+    public void ChangeScore(int scoreAmount)
+    {
+        score = score + scoreAmount;
+        scoreText.text = "Fixed Robots: " + score.ToString();
     }
 
     public void ChangeHealth(int amount)
@@ -103,12 +152,10 @@ public class RubyController : MonoBehaviour
 
             isInvincible = true;
             invincibleTimer = timeInvincible;
-
+            hurtEffect.Play();
             PlaySound(hitSound);
         }
-
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 

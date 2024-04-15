@@ -1,0 +1,1 @@
+For The Ruby's Adventure Project, I initially had trouble setting up the conditional restart key for the game over screens for both win and lose. So instead of setting up a restart key, I set up a conditional restart button that appears only after the player wins or loses.

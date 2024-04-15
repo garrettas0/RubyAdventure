@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem smokeEffect;
 
     Rigidbody2D rigidbody2D;
+    private RubyController rubyController;
+
     float timer;
     int direction = 1;
     bool broken = true;
@@ -23,9 +25,24 @@ public class EnemyController : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+
+        GameObject rubyControllerObject = GameObject.FindWithTag("RubyController");
+
+        if (rubyControllerObject != null)
+
+        {
+            rubyController = rubyControllerObject.GetComponent<RubyController>();
+            print("Found the RubyConroller Script!");
+        }
+        if (rubyController == null)
+
+        {
+            print("Cannot find GameController Script!");
+        }
+        rubyController.ChangeScore(0);
     }
 
-    void Update()
+        void Update()
     {
         //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
         if (!broken)
@@ -85,6 +102,10 @@ public class EnemyController : MonoBehaviour
         rigidbody2D.simulated = false;
         //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
+        if (rubyController != null)
+        {
+            rubyController.ChangeScore(1);
+        }
 
         smokeEffect.Stop();
     }
