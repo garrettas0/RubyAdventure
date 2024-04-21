@@ -222,15 +222,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2002850842152035387, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.73835
+      value: 1.5671477
       objectReference: {fileID: 0}
     - target: {fileID: 2002850842152035387, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.73835
+      value: 1.5671477
       objectReference: {fileID: 0}
     - target: {fileID: 2002850842152035387, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.73835
+      value: 1.5671477
       objectReference: {fileID: 0}
     - target: {fileID: 2002850842152035387, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -301,6 +301,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5583257517516170562, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
+      propertyPath: UVModule.sprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583257517516170562, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 0.5
       objectReference: {fileID: 0}
@@ -328,6 +332,10 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.minScalar
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5583257517516170562, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
+      propertyPath: UVModule.sprites.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: -502047701, guid: bb5bb2f184426a64cac53faa220820f5, type: 3}
     - target: {fileID: 5583257517516170562, guid: b74b0816218a83e48aec0a3daa83cb50, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
       value: 0
