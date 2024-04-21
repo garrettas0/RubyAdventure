@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
-
+    private float baseSpeed = 3.0f;
     public int maxHealth = 5;
     public int score;
     public TextMeshProUGUI scoreText;
@@ -149,6 +151,12 @@ public class RubyController : MonoBehaviour
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+    }
+    public async void ChangeSpeed(float speedalt)
+    {
+        speed = speedalt;
+        await Task.Delay(4000);
+        speed = baseSpeed;
     }
 
     void Launch()

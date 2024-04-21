@@ -11,6 +11,7 @@ public class PoisionZone : MonoBehaviour
         if (controller != null)
         {
             controller.ChangeHealth(-2);
+            controller.ChangeSpeed(1.0f);
         }
     }
 }
