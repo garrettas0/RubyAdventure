@@ -25,6 +25,7 @@ public class RubyController : MonoBehaviour
 
 // Triggers heal or hurt for when Ruby is healed or hurt
     public ParticleSystem hurtEffect;
+    public ParticleSystem poisonEffect;
 
     public AudioClip throwSound;
     public AudioClip hitSound;
@@ -155,6 +156,7 @@ public class RubyController : MonoBehaviour
     public async void ChangeSpeed(float speedalt)
     {
         speed = speedalt;
+        poisonEffect.Play();
         await Task.Delay(4000);
         speed = baseSpeed;
     }
