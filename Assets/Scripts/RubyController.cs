@@ -84,21 +84,13 @@ public class RubyController : MonoBehaviour
         {
             gameOver = true;
             speed = 0.0f;
-            ruby.SetActive(false);
-            gameUI.SetActive(false);
-            gameUI2.SetActive(false);
-            gameWorld.SetActive(false);
-            lose.SetActive(true);
+            Lose();
         }
         if (score == 3)
         {
             gameOver = true;
             speed = 0.0f;
-            ruby.SetActive(false);
-            gameUI.SetActive(false);
-            gameUI2.SetActive(false);
-            gameWorld.SetActive(false);
-            win.SetActive(true);
+            Win();
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -174,5 +166,22 @@ public class RubyController : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+    }
+
+    public void Lose()
+    {
+        ruby.SetActive(false);
+        gameUI.SetActive(false);
+        gameUI2.SetActive(false);
+        gameWorld.SetActive(false);
+        lose.SetActive(true);
+    }
+    public void Win()
+    {
+        ruby.SetActive(false);
+        gameUI.SetActive(false);
+        gameUI2.SetActive(false);
+        gameWorld.SetActive(false);
+        win.SetActive(true);
     }
 }
